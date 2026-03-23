@@ -1,3 +1,6 @@
+ARCHS = arm64 arm64e
+TARGET = iphone:clang:latest:14.0
+
 PACKAGE_NAME = com.hajan.767telegram
 TWEAK_NAME = 767Telegram
 767Telegram_FILES = Tweak.x
