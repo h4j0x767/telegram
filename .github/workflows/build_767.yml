@@ -1,4 +1,4 @@
-name: Build 767 Telegram IPA
+name: Build 767 Telegram Dylib
 
 on:
   push:
@@ -20,27 +20,18 @@ jobs:
         tar -xf master.tar.gz -C $THEOS/sdks --strip-components=1
         rm master.tar.gz
 
-    - name: Build Dylib
+    - name: Build Tweak
       run: |
         export THEOS=~/theos
         make package FINALPACKAGE=1
-        # Extract dylib from deb for injection
+        # Extract dylib
         dpkg-deb -x packages/*.deb tmp_deb
-        cp tmp_deb/Library/MobileSubstrate/DynamicLibraries/*.dylib 767Telegram.dylib
+        cp tmp_deb/Library/MobileSubstrate/DynamicLibraries/767Telegram.dylib .
 
-    - name: Inject Dylib into IPA
-      run: |
-        # Download Clean Telegram IPA (Placeholder URL or User Provided)
-        # For now, we provide the dylib and the build logic
-        # If Hajan provides the IPA in the repo, we inject it here.
-        echo "Injecting 767Telegram.dylib into IPA..."
-        # brew install optool
-        # optool install -c load -p "@executable_path/Frameworks/767Telegram.dylib" -t Telegram.app/Telegram
-
-    - name: Upload Finished Artifacts
+    - name: Upload Dylib
       uses: actions/upload-artifact@v3
       with:
-        name: 767-Final-Package
+        name: 767-Telegram-Dylib
         path: |
           767Telegram.dylib
           packages/*.deb
