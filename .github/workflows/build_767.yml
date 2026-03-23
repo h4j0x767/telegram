@@ -12,8 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up Theos
+    - name: Set up Theos and ldid
       run: |
+        brew install ldid
         export THEOS=~/theos
         git clone --recursive https://github.com/theos/theos.git $THEOS
         curl -LO https://github.com/theos/sdks/archive/master.tar.gz
