@@ -16,24 +16,24 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger total = [self numberOfSectionsInTableView:tableView];
-    if (section == total - 2) return 5; // 5 Main Mod Features
-    if (section == total - 1) return 1; // Hajan Salih Badge
+    NSInteger totalSections = [tableView numberOfSections]; // Correct way to get sections count
+    if (section == totalSections - 2) return 5; // 5 Main Mod Features
+    if (section == totalSections - 1) return 1; // Hajan Salih Badge
     return %orig;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSInteger total = [self numberOfSectionsInTableView:tableView];
-    if (section == total - 2) return @"767 MOD FEATURES";
-    if (section == total - 1) return @"DEVELOPER";
+    NSInteger totalSections = [tableView numberOfSections];
+    if (section == totalSections - 2) return @"767 MOD FEATURES";
+    if (section == totalSections - 1) return @"DEVELOPER";
     return %orig;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger total = [self numberOfSectionsInTableView:tableView];
+    NSInteger totalSections = [tableView numberOfSections];
     
     // Feature Section
-    if (indexPath.section == total - 2) {
+    if (indexPath.section == totalSections - 2) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"FeatureCell"];
         NSArray *titles = @[@"Ghost Mode", @"Hide Typing", @"No Screenshot Alert", @"Save Restricted Media", @"767 Premium"];
         cell.textLabel.text = titles[indexPath.row];
@@ -46,7 +46,7 @@
     }
     
     // Developer Section
-    if (indexPath.section == total - 1) {
+    if (indexPath.section == totalSections - 1) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"HajanCell"];
         cell.textLabel.text = @"Hajan Salih";
         cell.detailTextLabel.text = @"The 767 King | Developer";
@@ -68,8 +68,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger total = [self numberOfSectionsInTableView:tableView];
-    if (indexPath.section == total - 1) {
+    NSInteger totalSections = [tableView numberOfSections];
+    if (indexPath.section == totalSections - 1) {
         NSURL *url = [NSURL URLWithString:@"https://t.me/hajan767"];
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
