@@ -1,0 +1,9 @@
+Package: com.hajan.767telegram
+Name: 767 Telegram
+Depends: mobilesubstrate
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Premium 767 Telegram Mod. Unlocking advanced features and gold branding for the king of Duhok.
+Maintainer: Hajan 767
+Author: Hajan 767
+Section: Tweaks
